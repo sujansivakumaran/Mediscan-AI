@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>MediScan Dashboard</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>MediScan Dashboard</h1>
+
+<div class="dashboard-grid">
+
+    <div class="card">
+        <h2>📄 Report Type</h2>
+        <p>{{ results.report_type }}</p>
+    </div>
+
+    <div class="card">
+        <h2>⚠️ Risk Level</h2>
+        <p>{{ results.risk }}</p>
+    </div>
+
+</div>
+
+<div class="card">
+
+<h2>🧬 Medical Terms</h2>
+
+<ul>
+{% for term in results.medical_terms %}
+<li>{{ term }}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>📝 Summary</h2>
+
+<p>{{ results.summary }}</p>
+
+</div>
+
+<div class="card">
+
+<h2>📊 Test Results</h2>
+
+<table>
+
+<tr>
+<th>Test</th>
+<th>Value</th>
+<th>Status</th>
+<th>Range</th>
+</tr>
+
+{% for item in results.test_results %}
+
+<tr>
+<td>{{ item.test }}</td>
+<td>{{ item.value }}</td>
+<td>{{ item.status }}</td>
+<td>{{ item.normal_range }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>📈 Health Visualization</h2>
+
+<canvas id="healthChart"></canvas>
+
+</div>
+
+<div class="button-row">
+
+<a href="/history" class="btn">
+View History
+</a>
+
+<a href="/" class="btn">
+Upload New Report
+</a>
+
+</div>
+
+</div>
+
+<script>
+const testResults ={{ results.test_results | tojson }};
+</script>
+
+<script src="{{ url_for('static',
+filename='charts.js') }}"></script>
+
+</body>
+</html>

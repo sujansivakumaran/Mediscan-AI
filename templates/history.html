@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Report History</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static',
+      filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📚 Report History</h1>
+
+{% for report in reports %}
+
+<div class="card">
+
+<h3>{{ report.report_type }}</h3>
+
+<p><strong>Risk:</strong>
+{{ report.risk_level }}</p>
+
+<p><strong>Terms:</strong>
+{{ report.medical_terms }}</p>
+
+<p><strong>Summary:</strong>
+{{ report.summary }}</p>
+
+<p><strong>Date:</strong>
+{{ report.uploaded_at }}</p>
+
+</div>
+
+{% endfor %}
+
+<a href="/" class="btn">
+Back To Home
+</a>
+
+</div>
+
+</body>
+</html>

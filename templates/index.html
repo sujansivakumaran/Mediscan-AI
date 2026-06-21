@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MediScan AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="hero-card">
+
+        <h1>🩺 MediScan AI</h1>
+
+        <p>
+            Upload your medical report and get
+            AI-powered insights instantly
+        </p>
+
+    </div>
+
+    <form action="/analyze"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <div class="upload-card">
+
+            <h2>Upload Medical Report</h2>
+
+            <input type="file"
+                   name="file"
+                   accept=".pdf"
+                   required>
+
+            <button type="submit">
+                Analyze Report
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
